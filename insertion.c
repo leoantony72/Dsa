@@ -11,7 +11,6 @@ void insertionSort(int arr[],int n){
         arr[j+1]=key;
     }
 }
-
 void main(){
     int arr[100],length,i;
     printf("Enter length:");
