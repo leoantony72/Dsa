@@ -16,12 +16,12 @@ struct Node* createNode(int data){
     return p;
 }
 
-void insertAtBeginning(struct Node** head){
+void insertAtBeginning(struct Node* head){
    int data;
    scanf("%d",&data);
    struct Node *p=createNode(data);
-   p->link = *head;
-   *head = p;
+   p->link = head;
+   head = p;
 }
 
 void insertAtEnd(struct Node** head){
@@ -49,7 +49,7 @@ void printList(struct Node* node) {
     printf("null\n");
 }
 
-void insertAtPosition(struct Node** head){
+void insertAtPosition(struct Node* head){
    int data,position,i;
    printf("enter data to insert:");
    scanf("%d",&data);
@@ -57,17 +57,17 @@ void insertAtPosition(struct Node** head){
    scanf("%d",&position);
    if(position < 0){
     printf("invalid position\n");
-    return
-   }
-   if(position == 0){
-    insertAtBeginning(head,data);
     return;
    }
-    struct Node* temp =*head;
+   if(position == 0){
+    insertAtBeginning(head);
+    return;
+   }
+    struct Node* temp =head;
    for(i=0;i<position -1;i++){
     if(temp==NULL){
         printf("index out of bounds");
-        return
+        return;
     }
     temp = temp->link;
    }
@@ -85,9 +85,9 @@ void main(){
         printf("1.insert at beginning\t2.insert at end\t3.insert at position\t4.delete from beginning\t5.delete from end\t6.insert at position\t7.print list\t8. End\n");
         scanf("%d",&act);
         switch(act){
-            case 1: insertAtBeginning(&head); break;
+            case 1: insertAtBeginning(head); break;
             case 2: insertAtEnd(&head); break;
-            case 3: insertAtPosition();break;
+            //case 3: insertAtPosition();break;
            // case 4: deleteFromBeginning();break;
             //case 5: deleteFromEnd();break;
            // case 6: deleteFromPosition();break;
