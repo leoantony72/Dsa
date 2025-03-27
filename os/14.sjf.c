@@ -9,7 +9,7 @@ struct proc {
 };
 
 int main() {
-    int n, i, j, temp, sum = 0;
+    int n, i, j, sum = 0;
     float avg_wt, avg_tat;  // Average waiting time and turnaround time
 
     // Input the number of processes
@@ -18,7 +18,7 @@ int main() {
 
     // Declare an array of processes
     struct proc p[n];
-
+    struct proc temp; 
     // Input burst time for each process
     printf("Enter the burst time of each process:\n");
     for (i = 0; i < n; i++) {
@@ -30,15 +30,9 @@ int main() {
     for (i = 0; i < n; i++) {
         for (j = i + 1; j < n; j++) {
             if (p[i].bt > p[j].bt) {
-                // Swap burst times
-                temp = p[i].bt;
-                p[i].bt = p[j].bt;
-                p[j].bt = temp;
-
-                // Swap process IDs to keep track of original order
-                temp = p[i].po;
-                p[i].po = p[j].po;
-                p[j].po = temp;
+                temp = p[i];
+                p[i] = p[j];
+                p[j] = temp;
             }
         }
     }
