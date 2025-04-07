@@ -7,7 +7,7 @@ struct process{
     int rt;
 };
 int main(){
-    int n,i,j,done,time;
+    int n,i,j,done,time=0;
     int qt;
     int avgwt = 0, avgtat = 0;
     struct process p[100];
@@ -27,21 +27,23 @@ int main(){
     scanf("%d",&qt);
 
     //calculate wt
-    do{
-        done=1;
-        for(i=0;i<n;i++){
+    do {
+        done = 1;
+        for (i = 0; i < n; i++) {
             if (p[i].rt > 0) {
-                if(p[i].rt > qt){
+                if (p[i].rt > qt) {
                     time += qt;
                     p[i].rt -= qt;
-                }else{
+                } else {
                     time += p[i].rt;
                     p[i].wt = time - p[i].bt;
-                    p[i].rt =0;
+                    p[i].rt = 0;
                 }
+                done = 0;
             }
         }
-    }while(!done);
+    } while (!done);
+    
 
 
      // Calculate turnaround time
